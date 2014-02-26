@@ -1,21 +1,30 @@
+_blankchar = "\u1cc1".encode('utf-8')
 def draw(board)
+  #  board.each do |row|
+  #    row.each do |position|
+  #      print position[:symbol]
+  #    end
+  #    puts
+  #  end
+  board = [
+            ["\u250f".encode('utf-8'), "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2513".encode('utf-8')],
+            ["\u2503".encode('utf-8'), "-"*4,"-"*4,"-"*4, "\u2503".encode('utf-8')],
+            ["\u2503".encode('utf-8'), "-","-","-", "\u2503".encode('utf-8')],
+            ["\u2503".encode('utf-8'), "-","-","-", "\u2503".encode('utf-8')],
+            ["\u2517".encode('utf-8'), "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u251b".encode('utf-8')]
+  ]
   board.each do |row|
     row.each do |position|
-      print position[:symbol]
+      print position
     end
     puts
   end
-end
-board = []
-3.times do
-  board[board.length] = []
-  3.times do
-    board[board.length-1].push({symbol: "*", owned: false})
-  end
+
 end
 
-draw(board)
+board = []
 players = []
+draw(board)
 print "Please enter player #1: "
 players[0] = gets.strip
 print "Please enter player #2: "
