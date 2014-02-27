@@ -1,38 +1,51 @@
-_blankchar = "\u1cc1".encode('utf-8')
+def check_for_winner(board)
+  board.any? do |row|
+    row.all? { |position| position == "X" } || row.all? { |position| position == "O" }
+  end
+end
 def draw(board)
-  #  board.each do |row|
-  #    row.each do |position|
-  #      print position[:symbol]
-  #    end
-  #    puts
-  #  end
-  board = [
-            ["\u250f".encode('utf-8'), "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2513".encode('utf-8')],
-            ["\u2503".encode('utf-8'), "-"*4,"-"*4,"-"*4, "\u2503".encode('utf-8')],
-            ["\u2503".encode('utf-8'), "-","-","-", "\u2503".encode('utf-8')],
-            ["\u2503".encode('utf-8'), "-","-","-", "\u2503".encode('utf-8')],
-            ["\u2517".encode('utf-8'), "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u2501".encode('utf-8')*4, "\u251b".encode('utf-8')]
-  ]
   board.each do |row|
     row.each do |position|
       print position
     end
     puts
   end
-
 end
-
 board = []
+row = ["-"] * 3
+board = [row] * 3
+
 players = []
 draw(board)
-print "Please enter player #1: "
-players[0] = gets.strip
-print "Please enter player #2: "
-players[1] = gets.strip
-puts "Congrats, #{players.sample}. You have been chosen to play first."
-#randomly assign first player X or O
-#ask user for first move
-#check if it was a winning move
-#redraw board with new move
-#
+print "Please enter the name for player #1: "
+players << gets.strip
+print "Please enter the name for player #2: "
+players << gets.strip
 
+winner = nil
+
+until winner do
+  players.each_with_index do |player, index|
+    print "#{player}, please put in your X position: "
+    moveX = gets.strip.to_i
+    print "#{player}, please put in your Y position: "
+    moveY = gets.strip.to_i
+    if board[moveY][moveX] == "-"
+      if (index + 1) % 2 == 0
+        board[moveY][moveX] = "X"
+        draw(board)
+      else
+        board[moveY][moveX] = "O"
+        draw(board)
+      end
+    else
+      puts "Sorry, #{player}, that position is already taken."
+    end
+
+    if check_for_winner(board)
+      winner = player
+      puts "Congratulations, #{winner}! You win!"
+      break
+    end
+  end
+end
