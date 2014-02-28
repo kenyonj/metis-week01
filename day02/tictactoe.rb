@@ -9,7 +9,6 @@ def draw(board)
     row.each do |position|
       print position
     end
-    puts
   end
 end
 
@@ -18,10 +17,9 @@ board = [
           ["-","-","-"],
           ["-","-","-"]
 ]
-puts board.inspect
-puts board.class
 players = []
 draw(board)
+puts
 print "Please enter the name for player #1: "
 players << gets.strip
 print "Please enter the name for player #2: "
@@ -47,7 +45,7 @@ until winner do
       puts "Sorry, #{player}, that position is already taken."
     end
 
-    if check_for_winner(board)
+    if check_for_winner(board) || check_for_winner(board.transpose)
       winner = player
       puts "Congratulations, #{winner}! You win!"
       break
