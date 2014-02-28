@@ -7,4 +7,4 @@ CSV.foreach("music.csv", {headers: true}) do |music_list|
   song_name = music_list["Name"]
   database[artist] << song_name
 end
-pp database
+puts database

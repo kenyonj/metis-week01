@@ -1,5 +1,6 @@
 def status(num_lockers, num_students)
   lockers = [false] * num_lockers
+
   1.upto(100) do |student_number|
     lockers.each_with_index do |locker, locker_number|
       if (locker_number + 1) % student_number == 0
@@ -7,6 +8,7 @@ def status(num_lockers, num_students)
       end
     end
   end
+
   lockers.each_with_index do |locker, locker_number|
     if locker
       puts "Locker ##{locker_number+1}: Open"
@@ -16,4 +18,4 @@ def status(num_lockers, num_students)
   end
 end
 
-status(100,100)
+status(10,5)
