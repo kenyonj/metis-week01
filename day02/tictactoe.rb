@@ -3,6 +3,7 @@ def check_for_winner(board)
     row.all? { |position| position == "X" } || row.all? { |position| position == "O" }
   end
 end
+
 def draw(board)
   board.each do |row|
     row.each do |position|
@@ -11,10 +12,14 @@ def draw(board)
     puts
   end
 end
-board = []
-row = ["-"] * 3
-board = [row] * 3
 
+board = [
+          ["-","-","-"],
+          ["-","-","-"],
+          ["-","-","-"]
+]
+puts board.inspect
+puts board.class
 players = []
 draw(board)
 print "Please enter the name for player #1: "
